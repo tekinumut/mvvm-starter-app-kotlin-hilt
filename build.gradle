@@ -2,13 +2,15 @@
 buildscript {
     ext.kotlin_version = "1.4.10"
     ext.gradle_version = "4.1.0"
+    ext.hilt_plugin_version = '2.29.1-alpha'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "com.android.tools.build:gradle:${gradle_version}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_plugin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -34,7 +36,7 @@ ext {
     junit='4.13.1'
     testExtJunit='1.1.2'
     testEspressoCore='3.3.0'
-    dagger_version = '2.29.1'
+    hilt_viewmodel_version = '1.0.0-alpha02'
     lifecycle_version = '2.2.0'
     retrofit_version = '2.9.0'
 }

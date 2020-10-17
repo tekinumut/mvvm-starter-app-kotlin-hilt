@@ -9,17 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.mvvmstarterapp.viewmodels.ViewModelProviderFactory
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
 abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding>(
     private val mViewModelClass: Class<VM>,
     @LayoutRes private val layoutId: Int
-) : DaggerFragment(layoutId) {
+) : Fragment(layoutId) {
 
-    @Inject
-    lateinit var providerFactory: ViewModelProviderFactory
 
     lateinit var viewModel: VM
     lateinit var binding: DB
@@ -31,7 +26,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this, providerFactory).get(mViewModelClass)
+        viewModel = ViewModelProvider(this).get(mViewModelClass)
     }
 
     override fun onCreateView(

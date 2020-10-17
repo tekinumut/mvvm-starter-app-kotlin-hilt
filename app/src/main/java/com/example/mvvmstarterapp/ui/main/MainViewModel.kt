@@ -1,5 +1,7 @@
 package com.example.mvvmstarterapp.ui.main
 
+import android.util.Log
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
@@ -11,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class MainViewModel
-@Inject
+@ViewModelInject
 constructor(
     private val repository: Repository
 ) : BaseViewModel() {

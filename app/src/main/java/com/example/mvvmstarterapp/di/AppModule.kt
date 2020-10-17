@@ -5,28 +5,28 @@ import android.content.Context
 import com.example.mvvmstarterapp.network.MainService
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
-class AppModule {
+object AppModule {
 
-    companion object {
+    @Provides
+    @Singleton
+    fun provideContext(app: Application): Context = app.applicationContext
 
-        @Provides
-        @Singleton
-        fun provideApplication(app: Application): Context = app.applicationContext
-
-        @Singleton
-        @Provides
-        fun provideRetrofitInstance(): MainService {
-            return Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(MainService::class.java)
-        }
-
+    @Singleton
+    @Provides
+    fun provideMainService(): MainService {
+        return Retrofit.Builder()
+            .baseUrl("https://jsonplaceholder.typicode.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MainService::class.java)
     }
+
 }

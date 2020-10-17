@@ -6,15 +6,18 @@ import com.example.mvvmstarterapp.core.BaseActivity
 import com.example.mvvmstarterapp.databinding.ActivityMainBinding
 import com.example.mvvmstarterapp.models.Resource
 import com.example.mvvmstarterapp.ui.main.user.FragmentUser
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewModel::class.java) {
+@AndroidEntryPoint
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(
+    MainViewModel::class.java
+) {
 
     override fun getLayoutRes(): Int = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel.getUser().observe(this, {
             when (it) {
                 Resource.Loading -> viewModel.updateExample("Loading")
@@ -24,7 +27,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
         })
 
         textView.setOnClickListener {
-            supportFragmentManager.beginTransaction().add(R.id.containnerr, FragmentUser())
+            supportFragmentManager.beginTransaction().replace(R.id.containnerr, FragmentUser())
                 .commit()
         }
     }
