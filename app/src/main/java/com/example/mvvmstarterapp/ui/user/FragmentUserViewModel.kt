@@ -1,4 +1,4 @@
-package com.example.mvvmstarterapp.ui.main
+package com.example.mvvmstarterapp.ui.user
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(repository: ServiceRepository) : BaseViewModel() {
+class FragmentUserViewModel @Inject constructor(private val repository: ServiceRepository) : BaseViewModel() {
 
     private val _userId = MutableLiveData<Int>()
 
@@ -24,5 +24,4 @@ class MainViewModel @Inject constructor(repository: ServiceRepository) : BaseVie
     fun startRequest(userId: Int) {
         _userId.value = userId
     }
-
 }

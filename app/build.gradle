@@ -1,23 +1,25 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion rootProject.compileSdk_version
+    buildToolsVersion rootProject.buildTools_version
 
     defaultConfig {
         applicationId "com.example.mvvmstarterapp"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion rootProject.minSdk_version
+        targetSdkVersion rootProject.targetSdk_version
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        archivesBaseName = "starter-app-$versionName"
     }
 
     buildTypes {
@@ -39,31 +41,47 @@ android {
 }
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.core:core-ktx:$core_version"
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation "androidx.appcompat:appcompat:$appCompat_version"
     implementation "com.google.android.material:material:$material_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
 
-    // Add Dagger Hilt
-    implementation "com.google.dagger:hilt-android:$hilt_plugin_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_plugin_version"
-    // Dagger Hilt ViewModel
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewmodel_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_viewmodel_version"
+    // Fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
+    // Views
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout_version"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefresh_version"
 
-    // Add Viewmodel and Livedata
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    // Lifecycle + ViewModel & LiveData
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
-    // Add Retrofit
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hiltGradle_version"
+    kapt "com.google.dagger:hilt-compiler:$hiltGradle_version"
+
+    // Browser CustomTabs
+    implementation "androidx.browser:browser:$browser_version"
+
+    // 3rd Dependencies
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-    testImplementation "junit:junit:$junit"
-    androidTestImplementation "androidx.test.ext:junit:$testExtJunit"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$testEspressoCore"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$testExtJunit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$testEspresso_version"
+}
+
+kapt {
+    correctErrorTypes true
 }
