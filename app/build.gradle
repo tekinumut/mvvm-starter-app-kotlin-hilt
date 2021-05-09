@@ -14,18 +14,27 @@ android {
         applicationId "com.example.mvvmstarterapp"
         minSdkVersion rootProject.minSdk_version
         targetSdkVersion rootProject.targetSdk_version
-        versionCode 1
-        versionName "1.0"
-        multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode rootProject.version_code
+        versionName rootProject.version_name
 
-        archivesBaseName = "starter-app-$versionName"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            applicationIdSuffix '.debug'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "${variant.applicationId}-${variant.versionName}.apk"
+            }
         }
     }
     compileOptions {
@@ -37,7 +46,13 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        viewBinding = true
     }
+}
+
+kapt {
+    // Dagger Hilt
+    correctErrorTypes true
 }
 
 dependencies {
@@ -68,7 +83,6 @@ dependencies {
     implementation "androidx.browser:browser:$browser_version"
 
     // 3rd Dependencies
-
     // Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
