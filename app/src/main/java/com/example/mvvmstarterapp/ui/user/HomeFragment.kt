@@ -3,17 +3,16 @@ package com.example.mvvmstarterapp.ui.user
 import com.example.mvvmstarterapp.R
 import com.example.mvvmstarterapp.base.BaseFragment
 import com.example.mvvmstarterapp.data.enums.ApiStateEnum
-import com.example.mvvmstarterapp.databinding.FragmentUserBinding
+import com.example.mvvmstarterapp.databinding.FragmentHomeBinding
 import com.example.mvvmstarterapp.util.Resource
 import com.example.mvvmstarterapp.util.Utility
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FragmentUser : BaseFragment<FragmentUserBinding, FragmentUserViewModel>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeFragmentViewModel>() {
 
-    override val layoutResourceId: Int = R.layout.fragment_user
-    override val classTypeOfViewModel: Class<FragmentUserViewModel> =
-        FragmentUserViewModel::class.java
+    override val layoutId: Int = R.layout.fragment_home
+    override val classTypeOfVM: Class<HomeFragmentViewModel> = HomeFragmentViewModel::class.java
 
     override fun init() {
         binding.viewModel = viewModel

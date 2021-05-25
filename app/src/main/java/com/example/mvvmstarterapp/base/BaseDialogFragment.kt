@@ -15,8 +15,8 @@ import com.example.mvvmstarterapp.R
 
 abstract class BaseDialogFragment<DB : ViewDataBinding, VM : BaseViewModel> : DialogFragment() {
    @get:LayoutRes
-   protected abstract val layoutResourceId: Int
-   protected abstract val classTypeOfViewModel: Class<VM>
+   protected abstract val layoutId: Int
+   protected abstract val classTypeOfVM: Class<VM>
    lateinit var viewModel: VM
    lateinit var binding: DB
    private var isViewCreatedFirstTime = true
@@ -24,11 +24,11 @@ abstract class BaseDialogFragment<DB : ViewDataBinding, VM : BaseViewModel> : Di
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       setStyle(STYLE_NORMAL, R.style.FullScreenDialogStyle)
-      viewModel = ViewModelProvider(this).get(classTypeOfViewModel)
+      viewModel = ViewModelProvider(this).get(classTypeOfVM)
    }
 
    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-      binding = DataBindingUtil.inflate(inflater, layoutResourceId, container, false)
+      binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
       binding.lifecycleOwner = viewLifecycleOwner
       return binding.root
    }

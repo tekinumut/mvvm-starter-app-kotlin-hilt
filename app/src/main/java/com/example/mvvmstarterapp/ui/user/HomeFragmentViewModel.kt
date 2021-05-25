@@ -11,7 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class FragmentUserViewModel @Inject constructor(private val repository: ServiceRepository) : BaseViewModel() {
+class HomeFragmentViewModel @Inject constructor(private val repository: ServiceRepository) : BaseViewModel() {
 
     private val _userId = MutableLiveData<Int>()
 

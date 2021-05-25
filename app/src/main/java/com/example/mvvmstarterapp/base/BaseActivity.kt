@@ -10,15 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
 
     @get:LayoutRes
-    protected abstract val layoutResourceId: Int
-    protected abstract val classTypeOfViewModel: Class<VM>
+    protected abstract val layoutId: Int
+    protected abstract val classTypeOfVM: Class<VM>
     lateinit var binding: DB
     lateinit var viewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(classTypeOfViewModel)
-        binding = DataBindingUtil.setContentView(this, layoutResourceId)
+        viewModel = ViewModelProvider(this).get(classTypeOfVM)
+        binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
 
         init()

@@ -7,10 +7,6 @@ import retrofit2.http.Path
 
 interface MainApiService {
 
-    companion object {
-        const val BASE_URL = "https://jsonplaceholder.typicode.com"
-    }
-
     @GET("users/{id}")
     suspend fun getUser(@Path("id") id: Int): Response<UserModel>
 }

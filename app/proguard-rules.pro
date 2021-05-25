@@ -19,3 +19,21 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+# Model File
+# Make sure all your data classes are in this file
+-keep class com.example.mvvmstarterapp.data.model.** { *; }
+
+# OkHttp
+# remove Conscrypt block after OkHttp 4.10 release
+# You can also use 5.0.0-alpha.2 version and can remove next 2 line.
+-dontwarn okhttp3.internal.platform.ConscryptPlatform
+-dontwarn org.conscrypt.ConscryptHostnameVerifier

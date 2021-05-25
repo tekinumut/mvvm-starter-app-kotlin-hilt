@@ -12,19 +12,19 @@ import androidx.lifecycle.ViewModelProvider
 
 abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
     @get:LayoutRes
-    protected abstract val layoutResourceId: Int
-    protected abstract val classTypeOfViewModel: Class<VM>
+    protected abstract val layoutId: Int
+    protected abstract val classTypeOfVM: Class<VM>
     lateinit var viewModel: VM
     lateinit var binding: DB
     private var isViewCreatedFirstTime = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(classTypeOfViewModel)
+        viewModel = ViewModelProvider(this).get(classTypeOfVM)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, layoutResourceId, container, false)
+        binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.mvvmstarterapp.ui.user.FragmentUserViewModel" />
+            type="com.example.mvvmstarterapp.ui.user.HomeFragmentViewModel" />
 
         <import type="com.example.mvvmstarterapp.data.enums.ApiStateEnum" />
 
