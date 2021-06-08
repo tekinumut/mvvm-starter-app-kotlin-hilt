@@ -8,7 +8,7 @@
             name="viewModel"
             type="com.example.mvvmstarterapp.ui.user.HomeFragmentViewModel" />
 
-        <import type="com.example.mvvmstarterapp.data.enums.ApiStateEnum" />
+        <import type="com.example.mvvmstarterapp.util.Resource.Status" />
 
     </data>
 
@@ -32,7 +32,7 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            isVisible="@{viewModel.serviceState == ApiStateEnum.LOADING}"
+            isVisible="@{viewModel.getUser.status == Status.LOADING}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />

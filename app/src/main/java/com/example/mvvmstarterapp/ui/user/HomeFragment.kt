@@ -2,7 +2,6 @@ package com.example.mvvmstarterapp.ui.user
 
 import com.example.mvvmstarterapp.R
 import com.example.mvvmstarterapp.base.BaseFragment
-import com.example.mvvmstarterapp.data.enums.ApiStateEnum
 import com.example.mvvmstarterapp.databinding.FragmentHomeBinding
 import com.example.mvvmstarterapp.util.Resource
 import com.example.mvvmstarterapp.util.Utility
@@ -25,20 +24,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeFragmentViewModel>() 
     override fun setupObservers() {
         viewModel.getUser.observe(this, {
             when (it) {
-                Resource.Loading -> {
-                    viewModel.updateServiceState(ApiStateEnum.LOADING)
-                }
                 is Resource.Error -> {
-                    viewModel.updateServiceState(ApiStateEnum.ERROR)
                     binding.textView.text = it.errorMessage
                 }
                 is Resource.Success -> {
-                    viewModel.updateServiceState(ApiStateEnum.SUCCESS)
                     binding.textView.text = it.data.website + "\n\n  Click to Open WebSite"
                     binding.textView.setOnClickListener { view ->
-                            Utility.openWebSiteWithCustomTabs(view.context, "https://github.com/tekinumut?tab=repositories")
+                        Utility.openWebSiteWithCustomTabs(
+                            view.context,
+                            getString(R.string.my_github_repo_url)
+                        )
                     }
                 }
+                Resource.Loading -> {}
             }
         })
     }

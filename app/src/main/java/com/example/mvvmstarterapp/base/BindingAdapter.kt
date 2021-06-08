@@ -7,23 +7,18 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
-import com.example.mvvmstarterapp.util.Utility
+import com.bumptech.glide.Glide
 
 @BindingAdapter("imageUrl")
 fun ImageView.imageUrl(url: String?) {
-    Utility.getCustomGlide(context)
+    Glide.with(this)
         .load(url)
         .into(this)
 }
 
 @BindingAdapter("setTextGone")
 fun TextView.setTextGone(textValue: String?) {
-    if (textValue.isNullOrEmpty()) {
-        visibility = View.GONE
-        return
-    } else {
-        visibility = View.VISIBLE
-    }
+    isGone = textValue.isNullOrEmpty()
     text = textValue
 }
 

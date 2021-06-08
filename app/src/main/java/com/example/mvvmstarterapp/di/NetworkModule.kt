@@ -43,7 +43,7 @@ object NetworkModule {
             readTimeout(30, TimeUnit.SECONDS)
             addInterceptor(getHeaders())
             //if (BuildConfig.DEBUG)
-                addInterceptor(loggingBody)
+            addInterceptor(loggingBody)
         }
 
         return clientBuilder.build()

@@ -9,8 +9,6 @@
             name="viewModel"
             type="com.example.mvvmstarterapp.ui.main.MainViewModel" />
 
-        <import type="com.example.mvvmstarterapp.data.enums.ApiStateEnum" />
-
     </data>
 
     <RelativeLayout
