@@ -6,7 +6,7 @@ import androidx.lifecycle.switchMap
 import com.example.mvvmstarterapp.base.BaseViewModel
 import com.example.mvvmstarterapp.data.model.UserModel
 import com.example.mvvmstarterapp.data.repository.UserRepository
-import com.example.mvvmstarterapp.util.Resource
+import com.example.mvvmstarterapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

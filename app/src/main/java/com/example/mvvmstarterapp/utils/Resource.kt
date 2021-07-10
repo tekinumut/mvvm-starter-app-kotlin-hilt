@@ -1,8 +1,8 @@
-package com.example.mvvmstarterapp.util
+package com.example.mvvmstarterapp.utils
 
 sealed class Resource<out T>(val status: Status) {
     object Loading : Resource<Nothing>(Status.LOADING)
-    class Success<out T : Any>(val data: T) : Resource<T>(Status.SUCCESS)
+    class Success<T>(val data: T) : Resource<T>(Status.SUCCESS)
     class Error(val errorMessage: String) : Resource<Nothing>(Status.ERROR)
 
     enum class Status {

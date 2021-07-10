@@ -18,8 +18,8 @@ fun ImageView.imageUrl(url: String?) {
 
 @BindingAdapter("setTextGone")
 fun TextView.setTextGone(textValue: String?) {
-    isGone = textValue.isNullOrEmpty()
     text = textValue
+    isGone = textValue.isNullOrEmpty()
 }
 
 @BindingAdapter("isVisible")

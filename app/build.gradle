@@ -45,7 +45,7 @@ android {
 
     buildTypes {
         debug {
-            resValue "string", "app_name", "Mvvm-Debug"
+            resValue "string", "app_name", "MvvmTestApp"
             buildConfigField "String", "BASE_URL", '"https://jsonplaceholder.typicode.com"'
             minifyEnabled false
             applicationIdSuffix '.debug'
@@ -87,9 +87,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$versions.appCompat"
     implementation "com.google.android.material:material:$versions.material"
 
-    // Fragment
-    implementation "androidx.fragment:fragment-ktx:$versions.fragment"
-
     // Views
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefresh"
@@ -97,6 +94,9 @@ dependencies {
     // Lifecycle + ViewModel & LiveData
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+
+    // Fragment
+    implementation "androidx.fragment:fragment-ktx:$versions.fragment"
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
@@ -110,6 +110,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$versions.hilt"
     kapt "com.google.dagger:hilt-compiler:$versions.hilt"
 
+    // Datastore
+    implementation "androidx.datastore:datastore-preferences:$versions.dataStore"
+
     // Browser CustomTabs
     implementation "androidx.browser:browser:$versions.browser"
 
@@ -118,15 +121,20 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
 
-    // OkHttp
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:$versions.okhttp"))
-    implementation("com.squareup.okhttp3:logging-interceptor")
-
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
 
+    // OkHttp
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:$versions.okhttp"))
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    // Local Unit Tests
+    testImplementation "com.google.truth:truth:$versions.truth"
     testImplementation "junit:junit:$versions.junit"
+
+    // Instrument Unit Test
+    androidTestImplementation "com.google.truth:truth:$versions.truth"
     androidTestImplementation "androidx.test.ext:junit:$versions.testExtJunit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$versions.testEspresso"
 }

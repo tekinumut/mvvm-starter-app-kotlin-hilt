@@ -1,4 +1,4 @@
-package com.example.mvvmstarterapp.util
+package com.example.mvvmstarterapp.utils
 
 import android.content.Context
 import android.net.Uri

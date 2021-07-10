@@ -2,4 +2,6 @@ package com.example.mvvmstarterapp.base
 
 import androidx.lifecycle.ViewModel
 
-open class BaseViewModel : ViewModel()
+open class BaseViewModel : ViewModel() {
+    var isCreatedBefore = false
+}

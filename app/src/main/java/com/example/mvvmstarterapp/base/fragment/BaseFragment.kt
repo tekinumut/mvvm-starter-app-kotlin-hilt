@@ -1,30 +1,27 @@
-package com.example.mvvmstarterapp.base
+package com.example.mvvmstarterapp.base.fragment
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.mvvmstarterapp.base.BaseViewModel
 
-abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
-
-    @get:LayoutRes
-    protected abstract val layoutId: Int
+abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
     protected abstract val classTypeOfVM: Class<VM>
 
-    lateinit var binding: DB
     lateinit var viewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(classTypeOfVM)
-        binding = DataBindingUtil.setContentView(this, layoutId)
-        binding.lifecycleOwner = this
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         init()
         initListeners()
         initObservers()
+        // If the fragment is called from the stack, do not init again.
         if (!viewModel.isCreatedBefore) {
             initOnce()
             viewModel.isCreatedBefore = true

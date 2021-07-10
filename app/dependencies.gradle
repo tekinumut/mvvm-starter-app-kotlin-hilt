@@ -10,20 +10,23 @@ ext.versions = [
         version_name    : '1.0',
 
         // Module dependencies
-        gradle          : '4.2.1',
+        gradle          : '4.2.2',
+        // Hilt 2.37 has an issue with kotlin 1.5.20
+        // For more info -> https://github.com/google/dagger/issues/2684
         kotlin          : '1.5.10',
-        hilt            : '2.36',
+        hilt            : '2.37',
 
         // App dependencies
-        ktx             : '1.5.0',
+        ktx             : '1.6.0',
         appCompat       : '1.3.0',
-        material        : '1.3.0',
+        material        : '1.4.0',
         constraintLayout: '2.0.4',
         swiperefresh    : '1.1.0',
-        fragment        : '1.3.4',
+        fragment        : '1.3.5',
         lifecycle       : '2.3.1',
-        navigation      : '2.3.5',
+        navigation      : '2.4.0-alpha04',
         coroutines      : '1.5.0',
+        dataStore       : '1.0.0-rc01',
         browser         : '1.3.0',
 
         // 3rd App dependencies
@@ -32,7 +35,8 @@ ext.versions = [
         retrofit        : '2.9.0',
 
         //Test
+        truth           : '1.1.3',
         junit           : '4.13.2',
-        testExtJunit    : '1.1.2',
-        testEspresso    : '3.3.0'
+        testExtJunit    : '1.1.3',
+        testEspresso    : '3.4.0'
 ]
